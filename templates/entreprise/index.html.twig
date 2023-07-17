@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des entreprises{% endblock %}
+
+{# Les commentaires dans un fichier twig se font avec une accolade et un dièse ouvrant et fermant #}
+{# L'affichage du contenu d'une variable (exemple : un echo) sera mis entre deux accolades {{ }} #}
+
+{# L'exécution d'élément logique, comme une condition ou une boucle, se fera dans une accolade et une deux symboles pourcentage
+ouvrant et fermant {% %} pour le début de l'execution et pour la fin de l'exécution, exemple : 
+{% for row in array %} {% endfor %} #}
+
+{% block body %}
+    <h1>Liste des entreprises</h1>
+
+     {% for entreprise in entreprises %}
+        {{ entreprise }}<br>
+     {% endfor %}
+
+{% endblock %}
