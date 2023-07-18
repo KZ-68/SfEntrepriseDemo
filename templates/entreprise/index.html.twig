@@ -12,9 +12,12 @@ ouvrant et fermant {% %} pour le début de l'execution et pour la fin de l'exéc
 {% block body %}
     <h1>Liste des entreprises</h1>
 
+    <a href="{{ path('new_entreprise') }}" class="btn btn-success">Ajouter une entreprise</a><br/>
      {% for entreprise in entreprises %}
       {# Pour que tout fonctionne, il faut ajouter le paramètre id par chaînage #}
-        <a href="{{ path('show_entreprise', {'id': entreprise.id}) }}">{{ entreprise }}</a><br>
+        <a href="{{ path('show_entreprise', {'id': entreprise.id}) }}">{{ entreprise }}</a>
+        <a class="btn btn-warning" href="{{ path('edit_entreprise', {'id': entreprise.id}) }}">Edit</a>
+        <a class="btn btn-danger" href="{{ path('delete_entreprise', {'id': entreprise.id}) }}">Supp</a><br/>
      {% endfor %}
 
 {% endblock %}

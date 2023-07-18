@@ -5,10 +5,13 @@
 {% block body %}
     <h1>Liste des employés</h1>
 
+    <a href="{{ path('new_employe') }}" class="btn btn-success">Ajouter un employé</a><br/>
     {% for employe in employes %}
         {# On peut aussi faire du chaînage en ajoutant un point suivis du nom de l'entité et les attributs souhaités,
         cela équivaut à un employe->getEntreprise()->getRaisonSociale() #}
-        <a href="{{ path('show_employe', {'id': employe.id}) }}">{{ employe }}</a> ({{ employe.entreprise.raisonSociale }})<br>
+        <a href="{{ path('show_employe', {'id': employe.id}) }}">{{ employe }}</a> ({{ employe.entreprise.raisonSociale }})
+        <a class="btn btn-warning" href="{{ path('edit_employe', {'id': employe.id}) }}">Edit</a>
+        <a class="btn btn-danger" href="{{ path('delete_employe', {'id': employe.id}) }}">Supp</a><br/>
      {% endfor %}
 
 {% endblock %}
