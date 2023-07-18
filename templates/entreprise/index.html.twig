@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %} {# Héritage de la view de base #}
 
 {% block title %}Liste des entreprises{% endblock %}
 
@@ -13,7 +13,8 @@ ouvrant et fermant {% %} pour le début de l'execution et pour la fin de l'exéc
     <h1>Liste des entreprises</h1>
 
      {% for entreprise in entreprises %}
-        {{ entreprise }}<br>
+      {# Pour que tout fonctionne, il faut ajouter le paramètre id par chaînage #}
+        <a href="{{ path('show_entreprise', {'id': entreprise.id}) }}">{{ entreprise }}</a><br>
      {% endfor %}
 
 {% endblock %}
