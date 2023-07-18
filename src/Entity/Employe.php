@@ -32,6 +32,9 @@ class Employe
     #[ORM\JoinColumn(nullable: false)]
     private ?Entreprise $entreprise = null;
 
+    #[ORM\Column(length: 50, nullable: true)]
+    private ?string $ville = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -95,6 +98,26 @@ class Employe
         $this->entreprise = $entreprise;
 
         return $this;
+    }
+
+    public function getVille(): ?string
+    {
+        return $this->ville;
+    }
+
+    public function setVille(?string $ville): static
+    {
+        $this->ville = $ville;
+
+        return $this;
+    }
+
+    /* Quand on veut récupérer un élément défini dans une nouvelle méthode, penser à nommer le début du nom avec has, is, get 
+    ou juste avec le mot clé choisis, exemples: age(), getAge(), hasAge(), isAge() */
+    public function getAge(): ?string {
+        $now = new \DateTime(); // Quand c'est une classe native de PHP, ne pas oublier l'antislash "\"
+        $interval = $this->dateNaissance->diff($now);
+        return $interval->format("%Y");
     }
 
     public function __toString() {
