@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %} {# Héritage de la view de base #}
+
+{% block title %}Détail d'une entreprise{% endblock %}
+
+{% block body %}
+    <h1>Détail d'une entreprise</h1>
+
+    <h2>{{ entreprise }}</h2>
+
+    <p>
+       Adresse : {{ entreprise.adresseComplete}} <br/>
+       {# On peut laisser twig s'occuper du formatage des dates sans passer par une méthode, en ajoutant un pipe "|" 
+        suivi du filtre "date" avec dans la parenthèse le format voulu (voir la doc pour les autres filtres). #}
+       Date de création {{ entreprise.dateCreation | date("d.m.Y") }}
+    </p>
+
+    <h3>Liste des employés de l'entreprise</h3>
+    {% if entreprise.employes | length > 0 %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Employe</th>
+                </tr>
+            </thead>
+            <tbody>
+                {# Pour récupérer une liste il suffis d'appeler la collection correspondante à l'entité, 
+                ici ce sera "employes" de l'entité Entreprise #}
+                {% for employe in entreprise.employes %}
+                <tr><td><a href="{{ path('show_employe', {'id': employe.id}) }}">{{ employe }}</a></td></tr> <br/>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Aucun salarié dans cette entreprise.</p>
+    {% endif %}
+
+    
+
+{% endblock %}
