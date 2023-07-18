@@ -120,6 +120,7 @@ class Employe
         return $interval->format("%Y");
     }
 
+    // Toujours penser à utiliser __toString pour éviter l'erreur de conversion d'objet en string
     public function __toString() {
         return $this->prenom." ".$this->nom;
     }
