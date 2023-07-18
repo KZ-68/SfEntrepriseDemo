@@ -34,6 +34,7 @@ class Entreprise
 
     // Relation OneToMany de l'entité Employe
     #[ORM\OneToMany(mappedBy: 'entreprise', targetEntity: Employe::class, orphanRemoval: true)]
+    #[ORM\OrderBy(["nom" => "ASC"])]
     private Collection $employes;
 
     public function __construct()
@@ -144,6 +145,7 @@ class Entreprise
         return $this;
     }
 
+    // Toujours penser à utiliser __toString pour éviter l'erreur de conversion d'objet en string
     public function __toString() {
         return $this->raisonSociale;
     }
