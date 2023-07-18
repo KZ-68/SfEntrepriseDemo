@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %} {# Héritage de la view de base #}
+
+{% block title %}Détail d'un employé{% endblock %}
+
+{% block body %}
+    <h1>Détail d'un employé</h1>
+
+    <h2>{{ employe }}</h2>
+
+    <p>
+        Entreprise : <a href="{{ path('show_entreprise', {'id' : employe.entreprise.id}) }}">{{ employe.entreprise }}</a> <br/>
+        Ville : {% if employe.ville %} {{ employe.ville }} {% else %} Ville non renseignée {% endif %} <br/>
+        {# On peut laisser twig s'occuper du formatage des dates sans passer par une méthode, en ajoutant un pipe "|" 
+        suivi du filtre "date" avec dans la parenthèse le format voulu (voir la doc pour les autres filtres). #}
+        Date de naissance : {{ employe.dateNaissance | date("d.m.Y") }} <br/>
+        Age : {{ employe.age }} ans<br/>
+        Date d'embauche {{ employe.dateEmbauche | date("d.m.Y") }} <br/>
+    </p>
+
+{% endblock %}
